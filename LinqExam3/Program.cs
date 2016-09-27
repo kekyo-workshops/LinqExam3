@@ -65,10 +65,12 @@ namespace LinqExam3
     {
         static void Main(string[] args)
         {
-            var builder = new SQLiteConnectionStringBuilder();
+            var builder = (SQLiteConnectionStringBuilder)
+                SQLiteProviderFactory.Instance.CreateConnectionStringBuilder();
             builder.DataSource = Path.GetFullPath("x_ken_all.sqlite");
 
-            using (var connection = SQLiteProviderFactory.Instance.CreateConnection())
+            using (var connection =
+                SQLiteProviderFactory.Instance.CreateConnection())
             {
                 connection.ConnectionString = builder.ConnectionString;
 
